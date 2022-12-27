@@ -168,7 +168,6 @@ class CATable:
         self.max_time_table = dict()
         
         for obst_id, obstacle in enumerate(dyn_obst_traj):
-            print(obst_id, obstacle)
             for t, (i, j) in enumerate(obstacle):
                 self.pos_time_table[(i, j, t)] = obst_id
             
