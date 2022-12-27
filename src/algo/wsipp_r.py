@@ -141,7 +141,7 @@ class SearchTree: #SearchTree with reexpansion which uses PriorityQueue for OPEN
 
 
 
-def wsipp(safe_grid_map, 
+def wsipp_r(safe_grid_map, 
           start_i, start_j, 
           goal_i, goal_j, 
           w_param,

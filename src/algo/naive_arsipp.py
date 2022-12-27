@@ -13,7 +13,7 @@ from IPython.display import display
 from sys import float_info
 
 from src.grid import Map, SafeMap, manhattan_distance
-from src.algo.wsipp import wsipp
+from src.algo.wsipp_r import wsipp_r as wsipp
 
 
 EPS = float_info.epsilon
