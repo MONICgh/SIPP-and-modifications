@@ -23,8 +23,9 @@ class Node:
 
     - i, j: coordinates of corresponding grid element
     - g: g-value of the node (also equals time moment when the agent reaches the cell)
-    - h: h-value of the node // always 0 for Dijkstra
-    - f: f-value of the node // always equal to g-value for Dijkstra
+    - h: h-value of the node
+    - f: f-value of the node
+    - w: w-value of the node // always 1 for SIPP
     - parent: pointer to the parent-node 
 
     '''
@@ -79,7 +80,6 @@ class SearchTree: #SearchTree with reexpansion which uses PriorityQueue for OPEN
         self._open = PriorityQueue() 
         self._open_size = 0
         self._closed = set()
-        # self._reexpanded = set()
         self._enc_open_dublicates = 0
 
     
@@ -90,16 +90,6 @@ class SearchTree: #SearchTree with reexpansion which uses PriorityQueue for OPEN
     def open_is_empty(self):
         return self._open_size == 0
     
-    
-    # def add_to_open(self, item):
-    #     item_in_closed = self._closed.get((item.i, item.j, item.interval))
-    #     if item_in_closed is None or item < item_in_closed:
-    #         if item_in_closed is not None:
-    #             self._closed.pop((item.i, item.j, item.interval)) 
-    #             self._reexpanded.add(item)
-    #         self._open.put(item) 
-    #         self._open_size += 1
-    #     return
     def add_to_open(self, item):        
         self._open.put(item) 
         self._open_size += 1
@@ -113,9 +103,6 @@ class SearchTree: #SearchTree with reexpansion which uses PriorityQueue for OPEN
             
             if not best in self._closed:
                 return best
-            # if not (best.i, best.j, best.interval) in self._closed:
-            #     return best
-            
         return None
     
     def add_to_closed(self, item):
@@ -142,7 +129,7 @@ class SearchTree: #SearchTree with reexpansion which uses PriorityQueue for OPEN
 
 
 
-def wsipp(safe_grid_map, 
+def wsipp_d(safe_grid_map, 
           start_i, start_j, 
           goal_i, goal_j, 
           w_param,
