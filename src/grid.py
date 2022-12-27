@@ -82,8 +82,16 @@ class Map:
         width = int(map_file.readline().split()[1])
         map_file.readline()
         
-        self._width = width
-        self._height = height
+        if height > 70:
+        	self._height = 70
+        else:
+        	self._height = height
+        	
+        if width > 70:
+        	self._width = 70
+        else:
+        	self._width = width		
+        
         self._cells = [[0 for _ in range(width)] for _ in range(height)]
 
         i = 0
